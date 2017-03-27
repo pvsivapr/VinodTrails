@@ -1,0 +1,37 @@
+<div class="container-fluid" ng-controller="londonCtrl">
+<form name="myForm"  method="POST" enctype="multipart/form-data" ng-submit="onSubmit();" >
+                           <!-- Name-->
+                           <div class="input-group">
+                               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                               <input type="text" class="form-control" name="myName" placeholder="FirstName" ng-model="data.reg_name" required>
+                            </div>
+                                <span ng-show="myForm.myName.$dirty && myForm.myName.$invalid" style="color:red">
+                                    <span ng-show="myForm.myName.$error.required">Name is Required</span>
+                                </span>
+                                <br>
+                           <!-- Password-->
+                           <div class="input-group">
+                               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                               <input type="password" class="form-control" placeholder="Password" name="pswd" ng-model="data.reg_password" required>
+                           </div>
+                                <span ng-show="myForm.pswd.$dirty && myForm.pswd.$invalid" style="color:red">
+                                    <span ng-show="myForm.pswd.$error.required">Password is required</span>
+                                </span>
+                               <br> 
+                           <!-- Email-->
+                           <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input type="email" class="form-control" placeholder="Email" name="email" ng-model="data.reg_email" required>
+                           </div>
+                                 <span ng-show="myForm.email.$dirty && myForm.email.$invalid" style="color:red">
+                                    <span ng-show="myForm.email.$error.required">Email is Reqired</span>
+                                </span>
+                           <br>
+                         <input type = "file" file-model = "myFile"/>
+                           <br>
+                           <!-- Submit-->
+                           <input type="submit" class="form-control" ng-disabled="myForm.$invalid">
+                           <br>
+                            <input type="reset" class="form-control" ng-disabled="form.$pristine" ng-click="reset()">
+                        </form>
+</div>

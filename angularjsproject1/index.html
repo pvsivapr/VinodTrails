@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+    <head>
+       <title>Ayurway</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/jpg">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width= device-width, intial-scale=1">
+        <link rel="stylesheet" href="Boostrap\css\bootstrap.css">
+        <link rel="stylesheet" href="style.css">
+          <script src="boostrap_jquery.js"></script>
+          <script src="boostrap_min.js"></script>
+        <script src="Angularjs.js"></script>
+        <script src="anjularjs_script.js"></script>
+        <script src="angularjs_rooting.js"></script>
+        <script src="Angularjs_ui_routing.js"></script>
+        <script src="ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+<script src="ng-file-upload.min.js"></script>
+         
+    </head>
+        <body ng-app="myApp">
+<nav class="navbar  ">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar" ></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+          
+      </button>
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+ 
+     
+         <li  ><a style="color:white" ui-sref="consulation">Consultation</a></li>
+                     <li><a ui-sref="shop">Shop</a></li>
+                     <li><a ui-sref="doshaTest">Dosha Test</a></li>
+                     <li><a ui-sref="blog">Blog</a></li>
+                     <li><a ui-sref="aboutUs">About Us</a></li>
+                    <li><a ui-sref="members">Members</a></li>
+      </ul>
+          <form class="navbar-form navbar-left">
+      <div class="input-group">
+        <input type="text" name="search" placeholder="Search.." ng-model="searchText" class="form-control" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+         
+
+
+											
+
+   
+             <div ui-view></div>
+
+    
+          
+        </body>
+</html>
+
+
+
+  
+      

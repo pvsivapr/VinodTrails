@@ -1,0 +1,31 @@
+    <div class="table-responsive" ng-app="" ng-controller="dataGet">
+        <br>
+      
+<table class="table table-hover">
+<tr>
+<th>Emp ID</th>
+<th>Employee Name</th>
+<th>Employee password</th>
+<th>Employee email</th>
+<th>uploaded file</th>   
+<th>Change</th>
+<th>Delete</th>
+</tr>
+<tr ng-repeat="detail in details | filter:searchText ">
+<td>
+<span>{{detail.p_id}}</span></td>
+<td >{{detail.reg_name}}</td>
+<td>{{detail.reg_password}}</td>
+<td>{{detail.reg_email}}</td>
+<td>{{detail.reg_image}}</td>
+<td>
+<button class="btn btn-warning" ng-click="editInfo(detail.p_id)" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+</td>
+<td>
+<button class="btn btn-danger" ng-click="deleteInfo(detail.p_id)" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>
+</td>
+</tr>
+</table>
+        
+</div>
+
