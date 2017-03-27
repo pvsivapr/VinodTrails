@@ -38,7 +38,9 @@ app.controller('londonCtrl', function($scope,$http,registerdata)
                {
     $scope.CurrentDate = new Date();
     $scope.data = {};//data assigning
+    $scope.data1 = {};//data assigning
     $scope.data = null;
+     $scope.data1 = null;
     registerdata.gettingData().success(function(data)
         {
            $scope.details = data;//getting data 
@@ -79,11 +81,22 @@ app.controller('londonCtrl', function($scope,$http,registerdata)
                 }
         }).error(function(data, status, header, config) { $scope.result = "Data: " + status;  });
     }
-         $scope.editInfo=function(p_id,reg_name,reg_password,reg_email,myFile){
-              
+         $scope.editInfo=function(detail){
              $scope.mymodal="#myModal";
-             $scope.firstname = [p_id,reg_name,reg_password,reg_email,myFile];
-       
+             $scope.data1 = detail;
+            $scope.updateRegister=function()
+            {
+              var datafinal=$scope.data1;
+                registerdata.updateData(datafinal).success(function (data){
+                    if(data.affectedRows==1)
+                {
+                    $scope.message = data.affectedRows;
+                 registerdata.gettingData().success(function(data)
+                        {  $scope.details = data;});
+                }
+                });
+               // window.alert(x.reg_name);
+            }
       
     }
 
@@ -144,6 +157,9 @@ app.service('registerdata',function($http){
     } ;
        this.deleteData=function(datafinal){
       return $http.post('http://localhost:6737/delete_person',datafinal);
+    } ;
+        this.updateData=function(datafinal){
+      return $http.post('http://localhost:6737/updatedata',datafinal);
     } ;
   this.uploadFileToUrl = function(file,insertid1, uploadUrl){
       
