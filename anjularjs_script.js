@@ -54,7 +54,7 @@ app.controller('londonCtrl', function($scope,$http,registerdata)
                 $scope.students = data.affectedRows;//getting Response from inserting
                 var insertid1=data.insertId;
                 var file = $scope.myFile;
-                var uploadUrl = "http://mysql3.gear.host:6737/images";
+                var uploadUrl = "http://mysql3.gear.host:8080/images";
                registerdata.uploadFileToUrl(file,insertid1, uploadUrl);
                  if($scope.students==1)
                      {
@@ -143,23 +143,23 @@ registerdata.gettingData().success(function(data)
         $scope.uploadFile = function(){
             window.alert('hi');
            var file = $scope.myFile;
-           var uploadUrl = "http://mysql3.gear.host:6737/images";
+           var uploadUrl = "http://mysql3.gear.host:8080/images";
            registerdata.uploadFileToUrl(file, uploadUrl);
         };
      });
 /*****************All services are written here *******************************/
 app.service('registerdata',function($http){
     this.insertData=function(data11){
-      return $http.post('http://mysql3.gear.host:6737/register',data11);
+      return $http.post('http://mysql3.gear.host:8080/register',data11);
     } ;
       this.gettingData=function(){
-      return $http.get('http://mysql3.gear.host:6737/getdbRegister');
+      return $http.get('http://mysql3.gear.host:8080/getdbRegister');
     } ;
        this.deleteData=function(datafinal){
-      return $http.post('http://mysql3.gear.host:6737/delete_person',datafinal);
+      return $http.post('http://mysql3.gear.host:8080/delete_person',datafinal);
     } ;
         this.updateData=function(datafinal){
-      return $http.post('http://mysql3.gear.host:6737/updatedata',datafinal);
+      return $http.post('http://mysql3.gear.host:8080/updatedata',datafinal);
     } ;
   this.uploadFileToUrl = function(file,insertid1, uploadUrl){
       

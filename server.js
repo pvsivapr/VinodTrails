@@ -19,8 +19,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'admin',
+  host: 'mysql3.gear.host',
+  user: 'allgives',
   password: 'admin123!',
   database: 'allgives'
 })
@@ -154,8 +154,8 @@ connection.query(
   });
 });
     
-app.listen(process.env.PORT || 6737, function () {
-    console.log("Server started @ ", process.env.PORT || 6737);
+app.listen(process.env.PORT || 8080, function () {
+    console.log("Server started @ ", process.env.PORT || 8080);
 });
 app.post('/register', function (req, res,next) {
     
