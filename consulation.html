@@ -40,8 +40,7 @@
                          <input type = "file" file-model = "myFile"/>
                            <br>
                            <!-- Submit-->
-                           <input type="submit" class="form-control">
-                         
+                           <input type="submit" class="form-control" >
                            <br>
                             <input type="reset" ng-disabled="form.$pristine" ng-click="reset()" class="form-control">
                         </form>
@@ -91,7 +90,7 @@ Server Time: {{CurrentDate | date: 'dd/MM/yyyy'}}
 <td><img src="\AllGives Server\uploads\{{detail.myFile}}" class="img-thumbnail img-responsive" style="width:50px;height:50px;"></td>
     
 <td>
-<button class="btn btn-warning" ng-click="editInfo(detail.p_id,detail.reg_name,detail.reg_password,detail.reg_email,detail.myFile)" title="Edit" data-toggle="modal" data-target={{mymodal}}><span class="glyphicon glyphicon-edit"></span></button>
+<button class="btn btn-warning" ng-click="editInfo(detail)" title="Edit" data-toggle="modal" data-target={{mymodal}}><span class="glyphicon glyphicon-edit"></span></button>
 </td>
 <td>
 <button class="btn btn-danger" ng-click="deleteInfo(detail.p_id)" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>
@@ -113,13 +112,19 @@ Server Time: {{CurrentDate | date: 'dd/MM/yyyy'}}
         <h4 class="modal-title">Update Form</h4>
       </div>
       <div class="modal-body">
-           
-          <form name="myForm"  method="POST" enctype="multipart/form-data" ng-submit="onSubmit();" >
+            <div ng-if="message == 1" class="text-center text-primary">
+                      Success
+                          
+                      </div>
+                      <div ng-if="message == '' " class="text-center">
+                      Fail
+                      </div>
+          <form name="myForm"  method="POST" enctype="multipart/form-data" ng-submit="updateRegister();" >
                            <!-- Name-->
                 
                            <div class="input-group">
                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                               <input type="text" class="form-control" name="myName" placeholder="FirstName" ng-model="firstname[1]" required>
+                               <input type="text" class="form-control" name="myName" placeholder="FirstName" ng-model="data1.reg_name" required>
                             </div>
                                 <span ng-show="myForm.myName.$dirty && myForm.myName.$invalid" style="color:red">
                                     <span ng-show="myForm.myName.$error.required">Name is Required</span>
@@ -128,7 +133,7 @@ Server Time: {{CurrentDate | date: 'dd/MM/yyyy'}}
                            <!-- Password-->
                            <div class="input-group">
                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                               <input type="password" class="form-control" placeholder="Password" name="pswd" ng-model="firstname[2]" required >
+                               <input type="password" class="form-control" placeholder="Password" name="pswd" ng-model="data1.reg_password" required >
                            </div>
                                 <span ng-show="myForm.pswd.$dirty && myForm.pswd.$invalid" style="color:red">
                                     <span ng-show="myForm.pswd.$error.required">Password is required</span>
@@ -137,13 +142,13 @@ Server Time: {{CurrentDate | date: 'dd/MM/yyyy'}}
                            <!-- Email-->
                            <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                <input type="email" class="form-control" placeholder="Email" name="email" ng-model="firstname[3]" required>
+                                <input type="email" class="form-control" placeholder="Email" name="email" ng-model="data1.reg_email" required>
                            </div>
                                  <span ng-show="myForm.email.$dirty && myForm.email.$invalid" style="color:red">
                                     <span ng-show="myForm.email.$error.required">Email is Reqired</span>
                                 </span>
                            <br>
-                         <input type = "file" file-model = "myFile"/>
+                         <input type = "file" file-model = "data1.myFile"/>
                            <br>
                            <!-- Submit-->
                                  <input type="submit" class="form-control" ng-disabled="myForm.$invalid">
