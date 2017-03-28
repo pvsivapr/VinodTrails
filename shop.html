@@ -1,7 +1,7 @@
-    <div class="table-responsive" ng-app="" ng-controller="dataGet">
+    <div class="container" ng-app="" ng-controller="dataGet">
         <br>
       
-<table class="table table-hover">
+<!--<table class="table table-hover">
 <tr>
 <th>Emp ID</th>
 <th>Employee Name</th>
@@ -25,7 +25,17 @@
 <button class="btn btn-danger" ng-click="deleteInfo(detail.p_id)" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>
 </td>
 </tr>
-</table>
-        
+</table>-->
+        <div class="card-columns" ng-repeat="detail in details | filter:searchText ">
+                 <div class="card col-md-3">
+                     <img class="card-img-top" src="GREEN_REVOLUTION_web.jpg" alt="Card image cap">
+                     <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+                </div>
+
+        </div>  
 </div>
 
