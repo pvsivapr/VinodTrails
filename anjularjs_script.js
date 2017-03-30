@@ -99,6 +99,27 @@ app.controller('londonCtrl', function($scope,$http,registerdata)
             }
       
     }
+         
+         $scope.Activate=function(detail,activate){
+           
+             if(activate == 0){
+                 var x = 1;
+             registerdata.deactivate(detail,x).success(function(data){
+                 
+                 if(data.affectedRows==1){
+                    
+                    
+                 }
+             });
+             }
+              else if(activate==1){
+                 var x = 0;
+             registerdata.deactivate(detail,x).success(function(data){
+                 
+                 
+             });
+             }
+         }
 
          
 });
@@ -160,6 +181,10 @@ app.service('registerdata',function($http){
     } ;
         this.updateData=function(datafinal){
       return $http.post('http://localhost:6737/updatedata',datafinal);
+    } ;
+        this.deactivate=function(datafinal,x){
+              var details={datafinal,x}
+      return $http.post('http://localhost:6737/deactivate',details);
     } ;
   this.uploadFileToUrl = function(file,insertid1, uploadUrl){
       
