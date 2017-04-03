@@ -1,30 +1,24 @@
 <div class="container" ng-controller="jobpost">
     
         <h3>Post New Job</h3>
-    <div class="col-md-5">
+    
 <form name="myForm"  method="POST" enctype="multipart/form-data" ng-submit="onSubmit();" >
+    <div class="col-md-3">
                             <!-- Sector-->
-                      <!--      <div class="input-group">
-                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                               <input type="text" class="form-control" name="myName" placeholder="Sector" ng-model="data.reg_name" required>
-                            </div>
-                                <span ng-show="myForm.myName.$dirty && myForm.myName.$invalid" style="color:red">
-                                    <span ng-show="myForm.myName.$error.required">Name is Required</span>
-                                </span>
-                                <br>-->
-                                <div class="form-group">
-                                <label for="sel1">Select list:</label>
-                                <select class="form-control" name="sector" ng-model="Jobpost.sectortype" ng-dropdown required value="Choose one of the following..." ng-change="selection()">
-                                   <option ng-option value="privateSector">private Sector</option>
-                                    <option ng-option value="GovernmentSector">Government Sector</option>
-                                </select>
-                            </div>
+                                <div class="input-group">
+                                    <label for="sel1">Sector list:</label>
+                                    <select class="form-control" name="sector" ng-model="Jobpost.sectortype" ng-dropdown required           title="Choose one of the following..." ng-change="selection()">
+                                         <option value="" disabled="disabled" selected="selected">select</option>
+                                        <option ng-option value="privateSector">private Sector</option>
+                                        <option ng-option value="GovernmentSector">Government Sector</option>
+                                    </select>
+                                </div>
+                        <br>
                            <!-- Job Title-->
                             <div ng-if="Jobpost.sectortype == 'privateSector'">
-
                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                               <input type="text" class="form-control" name="myName" placeholder="Job Title" ng-model="data.reg_name" required>
+                               <label for="sel1">job title :</label>
+                               <input type="text" class="form-control" name="jobtitle" placeholder="Job Title" ng-model="Jobpost.reg_name" required>
                             </div>
                                 <span ng-show="myForm.myName.$dirty && myForm.myName.$invalid" style="color:red">
                                     <span ng-show="myForm.myName.$error.required">Name is Required</span>
@@ -32,8 +26,15 @@
                                 <br>
                             <!-- Company Name-->
                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                               <input type="text" class="form-control" name="myName" placeholder="Company Name" ng-model="data.reg_name" required>
+                               <label for="sel1">Company Name :</label>
+                               <input type="text" list="browsers" class="form-control" name="myName" placeholder="Company Name" ng-model="data.reg_name" required>
+                               <datalist id="browsers">
+                              <option value="Internet Explorer">
+                              <option value="Firefox">
+                              <option value="Chrome">
+                              <option value="Opera">
+                              <option value="Safari">
+                            </datalist>
                             </div>
                                 <span ng-show="myForm.myName.$dirty && myForm.myName.$invalid" style="color:red">
                                     <span ng-show="myForm.myName.$error.required">Name is Required</span>
@@ -41,84 +42,98 @@
                                 <br>
                            <!-- Job Position-->
                            <div class="input-group">
-                               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                              <label for="sel1">Job Position :</label>
                                <input type="password" class="form-control" placeholder="Job Position" name="pswd" ng-model="data.reg_password" required>
                            </div>
                                 <span ng-show="myForm.pswd.$dirty && myForm.pswd.$invalid" style="color:red">
                                     <span ng-show="myForm.pswd.$error.required">Password is required</span>
                                 </span>
                                <br> 
-            <!-- Job Type-->
-                      <div class="input-group">
-                               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                          <!-- Job Type-->
+                            <div class="input-group">
+                               <label for="sel1">Job Type :</label>
                                <input type="password" class="form-control" placeholder="Job Type" name="pswd" ng-model="data.reg_password" required>
                            </div>
                                 <span ng-show="myForm.pswd.$dirty && myForm.pswd.$invalid" style="color:red">
                                     <span ng-show="myForm.pswd.$error.required">Password is required</span>
                                 </span>
                                <br> 
-    <!-- Job Type-->
-     <div class="input-group">
-                               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <!-- key Type-->
+                            <div class="input-group">
+                              <label for="sel1">key Type :</label>
                                <input type="password" class="form-control" placeholder="key skills" name="pswd" ng-model="data.reg_password" required>
                            </div>
                                 <span ng-show="myForm.pswd.$dirty && myForm.pswd.$invalid" style="color:red">
                                     <span ng-show="myForm.pswd.$error.required">Password is required</span>
                                 </span>
                                <br> 
-        <!-- Job Role-->
-     <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
+                        <!-- Job Role-->
+                            <div class="input-group">
+                                <label for="sel1">Job Role :</label>
                                 <textarea rows="5" class="form-control" placeholder="Job Role" name="email" ng-model="data.reg_email" required></textarea>
                            </div>
-    <br>
+                                <br>
                            <!-- Email-->
                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <label for="sel1">Email Id:</label>
                                 <input type="email" class="form-control" placeholder="Email" name="email" ng-model="data.reg_email" required>
                            </div>
                                  <span ng-show="myForm.email.$dirty && myForm.email.$invalid" style="color:red">
                                     <span ng-show="myForm.email.$error.required">Email is Reqired</span>
                                 </span>
                            <br>
-    </div>
-                            <div>
-
-        <div class="col-md-5">
-    <!-- Expiery Date-->
-        <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                </div>
+                            <!-- Expiery Date-->
+                            <div class="input-group">
+                               <label for="sel1">Expiery Date :</label>
                                 <input type="email" class="form-control" placeholder="Expiery Date" name="email" ng-model="data.reg_email" required>
                            </div>
                                  <span ng-show="myForm.email.$dirty && myForm.email.$invalid" style="color:red">
                                     <span ng-show="myForm.email.$error.required">Email is Reqired</span>
                                 </span>
                            <br>
-    <!-- Selection Type interview ,Written test,off campus-->
-        <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                <input type="email" class="form-control" placeholder="Select type" name="email" ng-model="data.reg_email" required>
-                           </div>
-                                 <span ng-show="myForm.email.$dirty && myForm.email.$invalid" style="color:red">
-                                    <span ng-show="myForm.email.$error.required">Email is Reqired</span>
-                                </span>
+                            <!-- Selection Type interview ,Written test,off campus-->
+                         <div class="input-group">
+                                    <label for="sel1">Selection Type:</label>
+                                    <select class="form-control" name="sector" ng-model="Jobpost.selectionType" ng-dropdown required           title="Choose one of the following..." ng-change="selection()">
+                                         <option value="" disabled="disabled" selected="selected">select</option>
+                                        <option ng-option value="Interview">Interview </option>
+                                        <option ng-option value="Written test">Written test</option>
+                                        <option ng-option value="off campus">off campus</option>
+                                    </select>
+                                </div>
                            <br>
+         <div ng-if="Jobpost.selectionType == 'Interview'">
+              <div class="input-group">
+                                <label for="sel1">Job Role :</label>
+                                <textarea rows="5" class="form-control" placeholder="Job Role" name="email" ng-model="data.reg_email" required></textarea>
+                           </div>
+                                <br>  
+        </div>
+           <div ng-if="Jobpost.selectionType == 'off campus'">
+              <div class="input-group">
+                                <label for="sel1">Job Role :</label>
+                                <textarea rows="5" class="form-control" placeholder="Job Role" name="email" ng-model="data.reg_email" required></textarea>
+                           </div>
+                                <br>  
+        </div>
                          <input type = "file" file-model = "myFile"/>
                            <br>
-    <!--company apply url-->
-    
+                        <!--company apply url-->
+                        <div ng-if="Jobpost.sectortype == 'GovernmentSector'">
                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                               <label for="sel1"> apply url :</label>
                                 <input type="email" class="form-control" placeholder="Select type" name="email" ng-model="data.reg_email" required>
                            </div>
                                  <span ng-show="myForm.email.$dirty && myForm.email.$invalid" style="color:red">
                                     <span ng-show="myForm.email.$error.required">Email is Reqired</span>
                                 </span>
                            <br>
-                           
                            <input type="submit" class="form-control" ng-disabled="myForm.$invalid">
                            <br>
                             <input type="reset" class="form-control" ng-disabled="form.$pristine" ng-click="reset()">
+                        </div>
+    </div>
                         </form>
-        </div>
+        
 </div>
