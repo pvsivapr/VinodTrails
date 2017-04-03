@@ -73,8 +73,11 @@ app.controller('londonCtrl', function($scope,$http,registerdata)
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
 	   }
+    
          $scope.deleteInfo=function(p_id)//Delete the row
         {
+              var result = confirm("Want to delete?");
+             if(result){
             var datafinal = {p_id};
             registerdata.deleteData(datafinal).success(function(data, status, headers, config)
         {
@@ -84,8 +87,11 @@ app.controller('londonCtrl', function($scope,$http,registerdata)
                         {  $scope.details = data;});
                 }
         }).error(function(data, status, header, config) { $scope.result = "Data: " + status;  });
+                 }
     }
          $scope.editInfo=function(detail){
+              var result = confirm("Want to Edit?");
+             if(result){
              $scope.mymodal="#myModal";
              $scope.data1 = detail;
             $scope.updateRegister=function()
@@ -101,7 +107,7 @@ app.controller('londonCtrl', function($scope,$http,registerdata)
                 });
                // window.alert(x.reg_name);
             }
-      
+             }
     }
          
          $scope.Activate=function(detail,activate){

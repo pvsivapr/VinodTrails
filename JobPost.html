@@ -18,7 +18,7 @@
                             <div ng-if="Jobpost.sectortype == 'privateSector'">
                            <div class="input-group">
                                <label for="sel1">job title :</label>
-                               <input type="text" class="form-control" name="jobtitle" placeholder="Job Title" ng-model="Jobpost.reg_name" required>
+                               <input type="text" class="form-control" name="jobtitle" placeholder="Job Title" ng-model="Jobpost.job_title" required>
                             </div>
                                 <span ng-show="myForm.myName.$dirty && myForm.myName.$invalid" style="color:red">
                                     <span ng-show="myForm.myName.$error.required">Name is Required</span>
@@ -27,7 +27,7 @@
                             <!-- Company Name-->
                            <div class="input-group">
                                <label for="sel1">Company Name :</label>
-                               <input type="text" list="browsers" class="form-control" name="myName" placeholder="Company Name" ng-model="data.reg_name" required>
+                               <input type="text" list="browsers" class="form-control" name="myName" placeholder="Company Name" ng-model="Jobpost.company_name" required>
                                <datalist id="browsers">
                               <option value="Internet Explorer">
                               <option value="Firefox">
@@ -43,7 +43,7 @@
                            <!-- Job Position-->
                            <div class="input-group">
                               <label for="sel1">Job Position :</label>
-                               <input type="password" class="form-control" placeholder="Job Position" name="pswd" ng-model="data.reg_password" required>
+                               <input type="password" class="form-control" placeholder="Job Position" name="pswd" ng-model="Jobpost.job_position" required>
                            </div>
                                 <span ng-show="myForm.pswd.$dirty && myForm.pswd.$invalid" style="color:red">
                                     <span ng-show="myForm.pswd.$error.required">Password is required</span>
@@ -52,7 +52,7 @@
                           <!-- Job Type-->
                             <div class="input-group">
                                <label for="sel1">Job Type :</label>
-                               <input type="password" class="form-control" placeholder="Job Type" name="pswd" ng-model="data.reg_password" required>
+                               <input type="password" class="form-control" placeholder="Job Type" name="pswd" ng-model="Jobpost.job_type" required>
                            </div>
                                 <span ng-show="myForm.pswd.$dirty && myForm.pswd.$invalid" style="color:red">
                                     <span ng-show="myForm.pswd.$error.required">Password is required</span>
@@ -61,7 +61,7 @@
                         <!-- key Type-->
                             <div class="input-group">
                               <label for="sel1">key Type :</label>
-                               <input type="password" class="form-control" placeholder="key skills" name="pswd" ng-model="data.reg_password" required>
+                               <input type="password" class="form-control" placeholder="key skills" name="pswd" ng-model="Jobpost.key_skills" required>
                            </div>
                                 <span ng-show="myForm.pswd.$dirty && myForm.pswd.$invalid" style="color:red">
                                     <span ng-show="myForm.pswd.$error.required">Password is required</span>
@@ -70,13 +70,13 @@
                         <!-- Job Role-->
                             <div class="input-group">
                                 <label for="sel1">Job Role :</label>
-                                <textarea rows="5" class="form-control" placeholder="Job Role" name="email" ng-model="data.reg_email" required></textarea>
+                                <textarea rows="5" class="form-control" placeholder="Job Role" name="email" ng-model="Jobpost.job_role" required></textarea>
                            </div>
-                                <br>
+                            <br>
                            <!-- Email-->
                            <div class="input-group">
                                 <label for="sel1">Email Id:</label>
-                                <input type="email" class="form-control" placeholder="Email" name="email" ng-model="data.reg_email" required>
+                                <input type="email" class="form-control" placeholder="Email" name="email" ng-model="Jobpost.job_email" required>
                            </div>
                                  <span ng-show="myForm.email.$dirty && myForm.email.$invalid" style="color:red">
                                     <span ng-show="myForm.email.$error.required">Email is Reqired</span>
@@ -86,7 +86,7 @@
                             <!-- Expiery Date-->
                             <div class="input-group">
                                <label for="sel1">Expiery Date :</label>
-                                <input type="email" class="form-control" placeholder="Expiery Date" name="email" ng-model="data.reg_email" required>
+                                <input type="email" class="form-control" placeholder="Expiery Date" name="email" ng-model="Jobpost.job_Expiery" required>
                            </div>
                                  <span ng-show="myForm.email.$dirty && myForm.email.$invalid" style="color:red">
                                     <span ng-show="myForm.email.$error.required">Email is Reqired</span>
@@ -103,20 +103,22 @@
                                     </select>
                                 </div>
                            <br>
-         <div ng-if="Jobpost.selectionType == 'Interview'">
-              <div class="input-group">
-                                <label for="sel1">Job Role :</label>
-                                <textarea rows="5" class="form-control" placeholder="Job Role" name="email" ng-model="data.reg_email" required></textarea>
+                        <!--Conditional Statements-->
+                        <div ng-if="Jobpost.selectionType == 'Interview'">
+                            <div class="input-group">
+                                <label for="sel1">Venu Details :</label>
+                                <textarea rows="5" class="form-control" placeholder="Address" name="email" ng-model="data.reg_email" required></textarea>
                            </div>
                                 <br>  
-        </div>
-           <div ng-if="Jobpost.selectionType == 'off campus'">
-              <div class="input-group">
+                            </div>
+                        <!--Conditional Statements-->
+                           <div ng-if="Jobpost.selectionType == 'off campus'">
+                              <div class="input-group">
                                 <label for="sel1">Job Role :</label>
                                 <textarea rows="5" class="form-control" placeholder="Job Role" name="email" ng-model="data.reg_email" required></textarea>
-                           </div>
-                                <br>  
-        </div>
+                            </div>
+                        <br>  
+                        </div>
                          <input type = "file" file-model = "myFile"/>
                            <br>
                         <!--company apply url-->
@@ -129,7 +131,7 @@
                                     <span ng-show="myForm.email.$error.required">Email is Reqired</span>
                                 </span>
                            <br>
-                           <input type="submit" class="form-control" ng-disabled="myForm.$invalid">
+                           <input type="submit" class="form-control" >
                            <br>
                             <input type="reset" class="form-control" ng-disabled="form.$pristine" ng-click="reset()">
                         </div>
