@@ -68,7 +68,7 @@ Server Time: {{CurrentDate | date: 'dd/MM/yyyy'}}
 <th>Delete</th>
 <th>Active/Deactive</th>
 </tr>
-<tr ng-repeat="detail in details | filter:searchText  |orderBy : ' -p_id'| limitTo : 3 ">
+<tr ng-repeat="detail in details | filter:searchText  |orderBy : ' -p_id'| limitTo : 10 ">
     <td>
 <button class="btn btn-primary" ng-click="editInfo(detail.p_id)" title="Edit">
     
@@ -87,14 +87,14 @@ Server Time: {{CurrentDate | date: 'dd/MM/yyyy'}}
 <span>{{detail.p_id}}</span></td>
 <td >{{detail.reg_name}}</td>
 <td>{{detail.reg_password}}</td>
-<td>{{detail.reg_email}}</td>
+<td>{{detail.reg_email | limitTo:20}}</td>
 <td><img src="\AllGives Server\uploads\{{detail.myFile}}" class="img-thumbnail img-responsive" style="width:50px;height:50px;"></td>
     
 <td>
-<button class="btn btn-warning" ng-mouseenter="editInfo(detail)" title="Edit" data-toggle="modal" data-target={{mymodal}}><span class="glyphicon glyphicon-edit"></span></button>
+<button class="btn btn-warning" ng-click="editInfo(detail)" title="Edit" data-toggle="modal" data-target={{mymodal}}><span class="glyphicon glyphicon-edit"></span></button>
 </td>
 <td>
-<button class="btn btn-danger" ng-click="deleteInfo(detail.p_id)" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>
+<button class="btn btn-danger" ng-keydown="deleteInfo(detail.p_id)" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>
 </td>
     <td>
 <button class="btn btn-primary center" ng-disabled="{{ status}} > 0" ng-click="Activate(detail,detail.Activate)" title="Active"><span class="glyphicon glyphicon-plus"></span></button>

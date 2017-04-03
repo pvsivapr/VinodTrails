@@ -15,9 +15,10 @@ app.config(function($stateProvider,$urlRouterProvider) {
         templateUrl : "shop.html",
         controller : "dataGet"
     })
-    .state("doshaTest", {
-        url: '/doshaTest',
-        templateUrl : "doshaTest.html"
+    .state("Job Post", {
+        url: '/JobPost',
+        templateUrl : "JobPost.html",
+        controller :"jobpost"
     })
     .state("blog", {
         url: '/blog',
@@ -28,10 +29,13 @@ app.config(function($stateProvider,$urlRouterProvider) {
             templateUrl:"Aboutus.html",
             controller :"filecntrl"
            })
-    .state("members", {
-        url: '/members',
-        templateUrl : "members.html"
-    });
+    .state("fulldata1", {
+        url: '/viewall',
+        templateUrl : "viewall.html",
+         controller :"viewall"
+       
+    })
+ 
 });
 /*********consolution*************/
 app.controller('londonCtrl', function($scope,$http,registerdata)
@@ -124,7 +128,7 @@ app.controller('londonCtrl', function($scope,$http,registerdata)
          
 });
 /************************shop *******************************/
-app.controller('dataGet' , function($scope,$http,registerdata){
+app.controller('dataGet' , function($scope,$http,registerdata,$state,myService){
 //getting the data
 registerdata.gettingData().success(function(data)
 { $scope.details = data; });
@@ -138,6 +142,12 @@ registerdata.gettingData().success(function(data)
                         {  $scope.details = data;});
                 }
         }).error(function(data, status, header, config) { $scope.result = "Data: " + status;  });
+    }
+    
+    $scope.fulldata=function(detail){
+    myService.set(detail);
+                $state.go("fulldata1"); 
+       
     }
     //delete the data 
  $scope.editInfo=function(p_id,reg_name,reg_password,reg_email){
@@ -161,13 +171,34 @@ registerdata.gettingData().success(function(data)
      }]);
 /*****************about *******************************/
      app.controller('filecntrl',  function($scope, registerdata){
-        $scope.uploadFile = function(){
+        $scope.ranga = function(){
             window.alert('hi');
-           var file = $scope.myFile;
+          /* var file = $scope.myFile;
            var uploadUrl = "http://localhost:6737/images";
-           registerdata.uploadFileToUrl(file, uploadUrl);
+           registerdata.uploadFileToUrl(file, uploadUrl);*/
+              foxscript.src = '//js.foxpush.com/cachetrixcom.js?v='+Math.random();
+           foxscript.type = 'text/javascript';
+           foxscript.async = 'true';
+      // var fox_s = document.getElementsByTagName('script')[0];
+        var fox_s = "hiiiiiiii";
+       fox_s.parentNode.insertBefore(foxscript, fox_s);
         };
      });
+
+
+/*****************************insights*****************************************/
+
+app.controller('viewall',function($scope,myService){
+       $scope.desiredLocation = myService.get();
+});
+/*****************************Job post*****************************************/
+
+app.controller('jobpost',function($scope){
+      $scope.selection=function(){
+          
+      }
+});
+
 /*****************All services are written here *******************************/
 app.service('registerdata',function($http){
     this.insertData=function(data11){
@@ -176,6 +207,7 @@ app.service('registerdata',function($http){
       this.gettingData=function(){
       return $http.get('http://localhost:6737/getdbRegister');
     } ;
+    
        this.deleteData=function(datafinal){
       return $http.post('http://localhost:6737/delete_person',datafinal);
     } ;
@@ -204,4 +236,23 @@ app.service('registerdata',function($http){
            .error(function(){
            });
         }   
+});
+
+
+/**********************factorymethod*********************************/
+
+app.service('myService', function() {
+ var savedData = {}
+ function set(detail) {
+   savedData = detail;
+ }
+ function get() {
+  return savedData;
+ }
+
+ return {
+  set: set,
+  get: get
+ }
+
 });

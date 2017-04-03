@@ -26,13 +26,13 @@
 </td>
 </tr>
 </table>-->
-        <div class="card-columns" >
-                 <div class="card col-md-3">
-                     <img class="card-img-top" src="GREEN_REVOLUTION_web.jpg" alt="Card image cap">
+        <div class="card-columns" ng-repeat="detail in details | filter:searchText ">
+                 <div class="card col-md-3" ng-click="fulldata(detail)">
+                     <img class="card-img-top" src="\AllGives Server\uploads\{{detail.myFile}}" style="width:240px;height:240px;" alt="Card image cap">
                      <div class="card-block">
-      <h4 class="card-title">Card title</h4>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      <h4 class="card-title" style="color:#8B6891">{{detail.reg_name}}</h4>
+      <p class="card-text">{{detail.reg_password}}</p>
+      <p class="card-text"><small class="text-muted">{{detail.reg_email | limitTo:30}}</small></p>
     </div>
                 </div>
 
