@@ -1,0 +1,41 @@
+    <div class="container" ng-app="" ng-controller="dataGet" ng-cloak>
+        <br>
+      
+<!--<table class="table table-hover">
+<tr>
+<th>Emp ID</th>
+<th>Employee Name</th>
+<th>Employee password</th>
+<th>Employee email</th>
+<th>uploaded file</th>   
+<th>Change</th>
+<th>Delete</th>
+</tr>
+<tr ng-repeat="detail in details | filter:searchText ">
+<td>
+<span>{{detail.p_id}}</span></td>
+<td >{{detail.reg_name}}</td>
+<td>{{detail.reg_password}}</td>
+<td>{{detail.reg_email}}</td>
+<td>{{detail.reg_image}}</td>
+<td>
+<button class="btn btn-warning" ng-click="editInfo(detail.p_id)" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+</td>
+<td>
+<button class="btn btn-danger" ng-click="deleteInfo(detail.p_id)" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>
+</td>
+</tr>
+</table>-->
+        <div class="card-columns" ng-repeat="detail in details | filter:searchText ">
+                 <div class="card col-md-3" ng-click="fulldata(detail)">
+                     <img class="card-img-top" src="\AllGives Server\uploads\{{detail.myFile}}" style="width:240px;height:240px;" alt="Card image cap">
+                     <div class="card-block">
+      <h4 class="card-title" style="color:#8B6891">{{detail.reg_name}}</h4>
+      <p class="card-text">{{detail.reg_password}}</p>
+      <p class="card-text"><small class="text-muted">{{detail.reg_email | limitTo:30}}</small></p>
+    </div>
+                </div>
+
+        </div>  
+</div>
+
