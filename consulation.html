@@ -1,0 +1,158 @@
+<div class="container-fluid" ng-controller="londonCtrl">
+    <div class="col-md-2">
+        <div class="col-md-12">
+            <div ng-if="message == 1" class="text-center text-primary">
+                Success
+            </div>
+            <div ng-if="message == '' " class="text-center">
+                Fail
+            </div>
+            <h1 class="text-center Register">News</h1>
+            <form name="myForm"  method="POST" enctype="multipart/form-data" ng-submit="onSubmit();" >
+                <!-- --------------Name----------------->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-header"></i></span>
+                    <input type="text" class="form-control" name="myName" placeholder="Title" ng-model="data.reg_name" required>
+                </div>
+                <span ng-show="myForm.myName.$dirty && myForm.myName.$invalid" style="color:red">
+                    <span ng-show="myForm.myName.$error.required">Name is Required</span>
+                </span><br>
+                <!------------------- Password------------->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-subtitles"></i></span>
+                    <input type="password" class="form-control" placeholder="SubTitle" name="pswd" ng-model="data.reg_password" required>
+                </div>
+                <span ng-show="myForm.pswd.$dirty && myForm.pswd.$invalid" style="color:red">
+                    <span ng-show="myForm.pswd.$error.required">Password is required</span>
+                </span><br> 
+                <!-- ------------------Email------------------>
+                 <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
+                    <textarea rows="5" class="form-control" placeholder="comment" name="email" ng-model="data.reg_email" required></textarea>
+                </div><br>          
+                <input type = "file" file-model = "myFile"/><br>
+                 <!--------------------- Submit------------------>
+                 <input type="submit" class="form-control"> <br>
+                  <!--------------------- reset------------------>
+                 <input type="reset" ng-disabled="form.$pristine" ng-click="reset()" class="form-control">
+            </form>
+            <p>Pristine: {{myForm.$pristine}}</p> 
+        </div>           
+    </div>
+    <div>
+    Server Time: {{CurrentDate | date: 'dd/MM/yyyy'}}
+    </div>
+<!---------------------Data Dispaly Table--------------------------------------------->
+    <div class="table-responsive" >
+    <br>
+        <table class="table table-hover">
+            <tr>
+                <th>Date</th>
+                <th>Emp ID</th>
+                <th>Employee Name</th>
+                <th>Employee password</th>
+                <th>Employee email</th>
+                <th>uploaded file</th>   
+                <th>Change</th>
+                <th>Delete</th>
+                <th>Active/Deactive</th>
+            </tr>
+            <tr ng-repeat="detail in details | filter:searchText  |orderBy : ' -p_id'| limitTo : 10 ">
+                <td>
+                    <button class="btn btn-primary" ng-click="editInfo(detail.p_id)" title="Edit">
+                        <div>
+                        {{CurrentDate | date: 'MMM-dd'}}
+                        </div>
+                        <div>
+                        {{CurrentDate | date: 'shortTime'}}
+                        </div>
+                    </button>
+                </td>
+                <td>
+                    <span>{{detail.p_id}}</span>
+                </td>
+                <td >{{detail.reg_name}}</td>
+                <td>{{detail.reg_password}}</td>
+                <td>{{detail.reg_email | limitTo:20}}</td>
+                <td>
+                    <img src="\AllGives Server\uploads\{{detail.myFile}}" class="img-thumbnail img-responsive" style="width:50px;height:50px;">
+                </td>
+                <td>
+                    <button class="btn btn-warning" ng-click="editInfo(detail)" title="Edit" data-toggle="modal" data-target={{mymodal}}><span class="glyphicon glyphicon-edit"></span></button>
+                </td>
+                <td>
+                <button class="btn btn-danger" ng-click="deleteInfo(detail.p_id)"  title="Delete">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                </td>
+                <td>
+                    <button class="btn btn-primary center" ng-disabled="{{ status}} > 0" ng-click="Activate(detail,detail.Activate)" title="Active"><span class="glyphicon glyphicon-plus"></span></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+<!-------------------------------------Modal popup----------------- ---->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Form</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-if="message == 1" class="text-center text-primary">
+                              Success
+                    </div>
+                    <div ng-if="message == '' " class="text-center">
+                            Fail
+                    </div>
+                   <form name="myForm"  method="POST" enctype="multipart/form-data" ng-submit="updateRegister();" >
+                        <!-- ------------Name------------->
+                        <div class="input-group">
+                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                              <input type="text" class="form-control" name="myName" placeholder="FirstName" ng-model="data1.reg_name" required>            
+                        </div>
+                         <span ng-show="myForm.myName.$dirty && myForm.myName.$invalid" style="color:red">
+                             <span ng-show="myForm.myName.$error.required">Name is Required</span>
+                         </span>               
+                         <br>
+                        <!-- -------------Password---------->
+                        <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password" class="form-control" placeholder="Password" name="pswd" ng-model="data1.reg_password" required >
+                        </div>
+                        <span ng-show="myForm.pswd.$dirty && myForm.pswd.$invalid" style="color:red">
+                            <span ng-show="myForm.pswd.$error.required">Password is required</span>
+                        </span>
+                        <br> 
+                        <!-- -------------Email------------->
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input type="text" class="form-control" placeholder="Email" name="email" ng-model="data1.reg_email" required>
+                        </div>
+                        <br>
+                       <!-- -------------FileUpload------------->
+                        <input type = "file" file-model = "data1.myFile"/>
+                        <br>
+                        <!-- -------------Submit----------------->
+                        <input type="submit" class="form-control" ng-disabled="myForm.$invalid">
+                        <br>
+                        <!-- -------------reset----------------->
+                        <input type="reset" ng-disabled="form.$pristine" ng-click="reset()" class="form-control">
+                 </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+      </div>
+    </div>      
+</div> 
+     
+                
+        
+          
+
+
+
