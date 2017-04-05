@@ -1,6 +1,6 @@
 
 /************Here We Are Declaring The Application module**************************/              
-var app = angular.module("myApp", ["ui.router"]);
+var app = angular.module("myApp",["ui.router",'ngMaterial']);
 /************For Navigation purpose**************************/        
 app.config(function($stateProvider,$urlRouterProvider) {
     $urlRouterProvider.otherwise('/consulation');
@@ -22,7 +22,8 @@ app.config(function($stateProvider,$urlRouterProvider) {
     })
     .state("blog", {
         url: '/blog',
-        templateUrl : "blog.html"
+        templateUrl : "blog.html",
+         controller :"AppCtrl"
     })
     .state("aboutUs",
            {url:'/aboutus',
@@ -205,6 +206,22 @@ app.controller('jobpost',function($scope){
       }
 });
 
+/*****************************blog*****************************************/
+app.controller('AppCtrl', function($scope) {
+  $scope.title1 = 'Button';
+  $scope.title4 = 'Warn';
+  $scope.isDisabled = true;
+
+  $scope.googleUrl = 'http://google.com';
+
+});
+/*****************************blog*****************************************/
+app.controller('AppCtrl', function($scope) {
+  $scope.title1 = 'Button';
+  $scope.title4 = 'Warn';
+  $scope.isDisabled = true;
+  $scope.googleUrl = 'http://google.com';
+});
 /*****************All services are written here *******************************/
 app.service('registerdata',function($http){
     this.insertData=function(data11){
